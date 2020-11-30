@@ -1,0 +1,199 @@
+    <ImageButton
+        android:id="@+id/ib_7"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_7" />
+
+    <ImageButton
+        android:id="@+id/ib_8"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_8" />
+
+    <ImageButton
+        android:id="@+id/ib_9"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_9" />
+
+    <ImageButton
+        android:id="@+id/ib_ck"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_ck" />
+
+    <ImageButton
+        android:id="@+id/ib_c"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_c" />
+
+    <ImageButton
+        android:id="@+id/ib_4"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_4" />
+
+    <ImageButton
+        android:id="@+id/ib_5"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_5" />
+
+    <ImageButton
+        android:id="@+id/ib_6"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_6" />
+
+    <ImageButton
+        android:id="@+id/ib_um"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_um" />
+
+    <ImageButton
+        android:id="@+id/ib_del"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_del" />
+
+    <ImageButton
+        android:id="@+id/ib_1"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_1" />
+
+    <ImageButton
+        android:id="@+id/ib_2"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_2" />
+
+    <ImageButton
+        android:id="@+id/ib_3"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_3" />
+
+    <ImageButton
+        android:id="@+id/ib_min"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_min" />
+
+    <ImageButton
+        android:id="@+id/ib_root"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_root" />
+
+    <ImageButton
+        android:id="@+id/ib_0"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_0" />
+
+    <ImageButton
+        android:id="@+id/ib_dot"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_dot" />
+
+    <ImageButton
+        android:id="@+id/ib_proc"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_proc" />
+
+    <ImageButton
+        android:id="@+id/ib_plus"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_plus" />
+
+    <ImageButton
+        android:id="@+id/ib_ravn"
+        android:layout_width="57dp"
+        android:layout_height="53dp"
+        android:padding="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im"
+        app:srcCompat="@drawable/b_ravn" />
