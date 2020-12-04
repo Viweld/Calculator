@@ -1,15 +1,18 @@
 package com.example.calc
 
-import android.content.Context
-import android.graphics.Typeface
+import android.content.ClipData
+import android.content.ClipDescription
 import android.os.*
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageButton
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +48,12 @@ class MainActivity : AppCompatActivity() {
                 var kW: Float = WI / 720.toFloat()
 
                 //Подстраиваем клавиатуру под картинку
-                keyboard.setPadding((67.toFloat() * kW).toInt(),
+                keyboard.setPadding(
+                    (67.toFloat() * kW).toInt(),
                     (515.toFloat() * kH).toInt(),
                     (67.toFloat() * kW).toInt(),
-                    0)
+                    0
+                )
                 keyboard.horizontalSpacing = (5.toFloat() * kW).toInt()
                 keyboard.verticalSpacing = (5.toFloat() * kH).toInt()
                 //Приделываем кастомный адаптер к GridView под id:keyboard
@@ -62,32 +67,37 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        keyboard.setOnTouchListener { v, event ->
+
+        /*keyboard.setOnTouchListener {v, event ->
             when(event.action) {
                 MotionEvent.ACTION_DOWN-> {
-                    //VIB()
-                    (v as ImageView).setImageResource(R.drawable.b_7_d)
+                    //(v as ImageView).setImageResource(R.drawable.b_7_d)
+                    Log.d("event","Нажато")
+                    Log.d("event",(v as GridView).toString())
                 }
-                MotionEvent.ACTION_UP-> {
-                        //VIB()
-                    (v as ImageView).setImageResource(R.drawable.b_7)
+                else-> {
+                    //(v as ImageView).setImageResource(R.drawable.b_7)
+                    Log.d("event","Отпущено")
                 }
-                else -> {}
+
             }
             true
-        }
+        }*/
 
 
-        /*setOnItemClickListener { parent, view, position, id ->
-            if(position==0){
-                VIB()
+        keyboard.setOnItemClickListener { parent, view, position, id ->
+            if (position == 0) {
+                    //VIB()
                 (view as ImageView).setImageResource(R.drawable.b_7_d)
-                tablo.text="7"
-            }*/
-
-
+                tablo.text = "7"
+            }
+        }
     }
 }
+
+override fun setOnItemClickListener(event: MotionEvent, parent: AdapterView<*>?, view: View?, position: Int, id: Long):
+
+
 
 
 //В И Б Р А Ц И Я   П Р И   Н А Ж А Т И И   К Н О П О К
