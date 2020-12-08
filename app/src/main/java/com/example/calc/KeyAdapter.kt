@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.AbsListView
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class KeyAdapter(private val mContext: Context,private val kW: Float,private val kH: Float) : BaseAdapter() {
     override fun getCount(): Int {
@@ -26,8 +27,9 @@ class KeyAdapter(private val mContext: Context,private val kW: Float,private val
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val imageView: ImageView = ImageView(mContext)
         imageView.layoutParams = AbsListView.LayoutParams((114.toFloat()*kW).toInt(), (106.toFloat()*kH).toInt())
-        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        imageView.scaleType = ImageView.ScaleType.FIT_XY
         imageView.setImageResource(mThumbIds[position])
+
         return imageView
     }
 

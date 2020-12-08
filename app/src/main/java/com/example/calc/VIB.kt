@@ -7,7 +7,7 @@ import android.os.Vibrator
 
 
 //В И Б Р А Ц И Я   П Р И   Н А Ж А Т И И   К Н О П О К
-fun VIB(context: Context): Boolean {
+fun VIB(context: Context){
     val vibrator: Vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     val canVibrate: Boolean = vibrator.hasVibrator()
     val milliseconds = 70L
@@ -25,6 +25,5 @@ fun VIB(context: Context): Boolean {
             vibrator.vibrate(milliseconds)
         }
     }
-
 }
 
