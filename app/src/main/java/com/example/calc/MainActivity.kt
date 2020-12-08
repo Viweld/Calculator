@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
+import android.util.Log.*
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             //Расчет коэффициентов сжатия если экран не по формату картинки
             var kH: Float = HI / 1180.toFloat()
             var kW: Float = WI / 720.toFloat()
-            Log.d("Tag", "$kW и $kH")
+            d("Tag", "$kW и $kH")
             power.setX(0.toFloat() - 45.toFloat() * kW)
             power.setY(360.toFloat() * kH)
             power.scaleX = 0.5.toFloat() * kH * kH
@@ -72,35 +73,30 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        var ButtonPositionId: Int
-
         keyboard.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    ButtonPositionId = (v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt())
-                    ((v as GridView).getChildAt(ButtonPositionId) as ImageView).setImageResource(R.drawable.b_7_d)
+                    ((v as GridView).getChildAt((v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt())) as ImageView).setImageResource(R.drawable.b_7_d)
                     Log.d("event", "Нажато")
                     tablo.text = (v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt()).toString()
                     VIB(this)
                 }
                 MotionEvent.ACTION_UP -> {
-                    ((v as GridView).getChildAt(tablo.text.toString().toInt() as ImageView).setImageResource(R.drawable.b_7)
-                    Log.d("event","Отпущено")
-                    Log.d("event", (v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt()).toString())
-                    tablo.text = "0"
+                    ((v as GridView).getChildAt(tablo.text.toString().toInt()) as ImageView).setImageResource(R.drawable.b_7)
+                    Log.d("event", "Отпущено")
+                    Log.d("event", v.pointToPosition(event.rawX.toInt(), event.rawY.toInt()).toString())
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    if ((v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt()) != tablo.text.toString().toInt()) {
-                        ((v as GridView).getChildAt(tablo.text.toString().toInt()) as ImageView).setImageResource(R.drawable.b_7)
-                        Log.d("event", "Сдвинуто")
-                        tablo.text = "0"
-                    }
+                    Log.d("event", "Сдвинуто")
                 }
                 else -> {
+                    Log.d("event", "Другое движение")
                 }
             }
         }
     }
+}
+
 
 
 
