@@ -5,15 +5,18 @@ import android.util.Log
 import android.util.Log.*
 import android.view.MotionEvent
 import android.widget.GridView
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
+import org.xmlpull.v1.XmlPullParser
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val parser: XmlPullParser = getResources().getXml(com.example.calc.R.xml.keydata)
 
         //П О Л О Ж Е Н И Е   К Н О П К И   В К Л Ю Ч Е Н И Я
         im.post(Runnable {
@@ -30,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("event",kH.toString())
         })
 
-        // В К Л Ю Ч Е Н И Е  /  В Ы К Л Ю Ч Е Н И Е
+
+            // В К Л Ю Ч Е Н И Е  /  В Ы К Л Ю Ч Е Н И Е
         power.setOnCheckedChangeListener { buttonView, isChecked ->
             //1. Вибрируем:
             VIB(this)
@@ -69,21 +73,20 @@ class MainActivity : AppCompatActivity() {
         var XY: Int
 
 
+
         keyboard.setOnTouchListener { v, event ->
             XY = (v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt() - getStatusBarHeight())
+            val key=CalcButton(parser,XY)
+
             if (XY >= 0) {
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
-                        //((v as GridView).getChildAt(XY) as ImageView).setImageResource(R.drawable.b_7_d)
-                        Log.d("event", "Нажато")
-                        Log.d("event", "Нажато в точке ${event.rawX.toInt()};${event.rawY.toInt()}")
-                        tablo.text = XY.toString()
+                        ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getPushImage(), "drawable", getPackageName()))
+                        tablo.text = key.getNum()
                         VIB(this)
                     }
                     MotionEvent.ACTION_UP -> {
-                        Log.d("event", "Отпущено")
-                        //Log.d("event", XY.toString())
-                        //((v as GridView).getChildAt(XY) as ImageView).setImageResource(R.drawable.b_7)
+                        ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
                     }
                     MotionEvent.ACTION_MOVE -> {
                         Log.d("event", "Сдвинуто")
@@ -97,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    //
     fun getStatusBarHeight(): Int {
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         return if (resourceId > 0) {

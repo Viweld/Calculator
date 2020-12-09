@@ -1,0 +1,150 @@
+<buttons>
+    <button
+        b_id="0"
+        b_im="b_7"
+        b_im_press="b_7_d"
+        b_type="n"
+        b_num="7"/>
+
+    <button
+        b_id="1"
+        b_im="b_8"
+        b_im_press="b_8_d"
+        b_type="n"
+        b_num="8" />
+
+    <button
+        b_id="2"
+        b_im="b_9"
+        b_im_press="b_9_d"
+        b_type="n"
+        b_num="9" />
+
+    <button
+        b_id="3"
+        b_im="b_ck"
+        b_im_press="b_ck_d"
+        b_type="oper"
+        b_num="" />
+
+    <button
+        b_id="4"
+        b_im="b_c"
+        b_im_press="b_c_d"
+        b_type="oper"
+        b_num="" />
+
+
+
+
+
+    <button
+        b_id="5"
+        b_im="b_4"
+        b_im_press="b_4_d"
+        b_type="n"
+        b_num="4"/>
+
+    <button
+        b_id="6"
+        b_im="b_5"
+        b_im_press="b_5_d"
+        b_type="n"
+        b_num="5" />
+
+    <button
+        b_id="7"
+        b_im="b_6"
+        b_im_press="b_6_d"
+        b_type="n"
+        b_num="6" />
+
+    <button
+        b_id="8"
+        b_im="b_um"
+        b_im_press="b_um_d"
+        b_type="oper"
+        b_num="" />
+
+    <button
+        b_id="9"
+        b_im="b_del"
+        b_im_press="b_del_d"
+        b_type="oper"
+        b_num="" />
+
+    <button
+        b_id="10"
+        b_im="b_1"
+        b_im_press="b_1_d"
+        b_type="n"
+        b_num="1"/>
+
+    <button
+        b_id="11"
+        b_im="b_2"
+        b_im_press="b_2_d"
+        b_type="n"
+        b_num="2" />
+
+    <button
+        b_id="12"
+        b_im="b_3"
+        b_im_press="b_3_d"
+        b_type="n"
+        b_num="3" />
+
+    <button
+        b_id="13"
+        b_im="b_min"
+        b_im_press="b_min_d"
+        b_type="oper"
+        b_num="" />
+
+    <button
+        b_id="14"
+        b_im="b_root"
+        b_im_press="b_root_d"
+        b_type="oper"
+        b_num="" />
+
+
+
+
+
+    <button
+        b_id="15"
+        b_im="b_0"
+        b_im_press="b_0_d"
+        b_type="n"
+        b_num="0"/>
+
+    <button
+        b_id="16"
+        b_im="b_dot"
+        b_im_press="b_dot_d"
+        b_type="n"
+        b_num="," />
+
+    <button
+        b_id="17"
+        b_im="b_proc"
+        b_im_press="b_proc_d"
+        b_type="oper"
+        b_num="" />
+
+    <button
+        b_id="18"
+        b_im="b_ck"
+        b_im_press="b_ck_d"
+        b_type="oper"
+        b_num="" />
+
+    <button
+        b_id="19"
+        b_im="b_ravn"
+        b_im_press="b_ravn_d"
+        b_type="oper"
+        b_num="" />
+
+</buttons>
