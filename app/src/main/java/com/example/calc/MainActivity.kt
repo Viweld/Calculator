@@ -15,9 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
         //П О Л О Ж Е Н И Е   К Н О П К И   В К Л Ю Ч Е Н И Я
         im.post(Runnable {
             //Измерение картинки
@@ -26,11 +23,11 @@ class MainActivity : AppCompatActivity() {
             //Расчет коэффициентов сжатия если экран не по формату картинки
             var kH: Float = HI/ 1180.toFloat()
             var kW: Float = WI / 720.toFloat()
-            d("Tag", "$kW и $kH")
-            power.setX(0.toFloat() - 45.toFloat() * kW)
-            power.setY(360.toFloat() * kH)
-            power.scaleX = 0.5.toFloat() * kH * kH
-            power.scaleY = 0.5.toFloat() * kW
+            power.setX((- 45.toFloat()) * kW)
+            power.setY(360.toFloat()*kH)
+            power.scaleX = 0.50.toFloat() * kH
+            power.scaleY = 0.50.toFloat() * kW
+            Log.d("event",kH.toString())
         })
 
         // В К Л Ю Ч Е Н И Е  /  В Ы К Л Ю Ч Е Н И Е
