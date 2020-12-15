@@ -25,14 +25,14 @@
         b_im="b_ck"
         b_im_press="b_ck_d"
         b_type="oper"
-        b_num="" />
+        b_num="ck" />
 
     <button
         b_id="4"
         b_im="b_c"
         b_im_press="b_c_d"
         b_type="oper"
-        b_num="" />
+        b_num="c" />
 
 
 
@@ -64,14 +64,14 @@
         b_im="b_um"
         b_im_press="b_um_d"
         b_type="oper"
-        b_num="" />
+        b_num="um" />
 
     <button
         b_id="9"
         b_im="b_del"
         b_im_press="b_del_d"
         b_type="oper"
-        b_num="" />
+        b_num="del" />
 
     <button
         b_id="10"
@@ -99,14 +99,14 @@
         b_im="b_min"
         b_im_press="b_min_d"
         b_type="oper"
-        b_num="" />
+        b_num="min" />
 
     <button
         b_id="14"
         b_im="b_root"
         b_im_press="b_root_d"
         b_type="oper"
-        b_num="" />
+        b_num="root" />
 
 
 
@@ -131,20 +131,20 @@
         b_im="b_proc"
         b_im_press="b_proc_d"
         b_type="oper"
-        b_num="" />
+        b_num="proc" />
 
     <button
         b_id="18"
-        b_im="b_ck"
-        b_im_press="b_ck_d"
+        b_im="b_plus"
+        b_im_press="b_plus_d"
         b_type="oper"
-        b_num="" />
+        b_num="plus" />
 
     <button
         b_id="19"
         b_im="b_ravn"
         b_im_press="b_ravn_d"
         b_type="oper"
-        b_num="" />
+        b_num="ravn" />
 
 </buttons>

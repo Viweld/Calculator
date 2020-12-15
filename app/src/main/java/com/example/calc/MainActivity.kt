@@ -11,6 +11,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 import org.xmlpull.v1.XmlPullParser
+import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,8 +81,9 @@ class MainActivity : AppCompatActivity() {
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
                         ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getPushImage(), "drawable", getPackageName()))
-                        tablo.text = key.getNum()
-                        down=XY
+                        //tablo.text = key.getNum()
+                        calc(key.getNum(),key.getTypeOfButton())
+                        down=XY //remember the pressed button
                     }
                     MotionEvent.ACTION_UP -> {
                         ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
@@ -107,6 +109,38 @@ class MainActivity : AppCompatActivity() {
         return if (resourceId > 0) {
             resources.getDimensionPixelSize(resourceId)
         } else 0
+    }
+
+    fun calc(num: String, buttonType: String){
+        if(buttonType=="n")/*Нажата кнопка с ЧИСЛОМ?, иначе с ОПЕРАТОРОМ*/ {
+            if (tablo.text.length < 8)/*Проверка на длину числа (не больше 8 цифр) !!!!! ДОБАВИТЬ ПРОВЕРКУ НА ЗАПЯТУЮ !!!!! */ {
+                if (tablo.text != "0") /*проверка на НОЛИК */ {
+                    tablo.text = "${tablo.text}${num}"
+                } else {
+                    tablo.text = num
+                }
+            }
+        }else{
+            var a:Double=tablo.text.toString().toDouble()
+            var result=Expression()
+            when(num){
+                "ck" -> {
+
+                }
+                "c" -> {
+                    tablo.text="0"
+                }
+                "root" -> {
+                    tablo.text=sqrt(a).toString()
+                }
+                "proc" -> {
+
+                }
+                "ravn" -> {
+
+                }
+            }
+        }
     }
 }
 
