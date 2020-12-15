@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        var expr=Expression()
 
         //П О Л О Ж Е Н И Е   К Н О П К И   В К Л Ю Ч Е Н И Я
         im.post(Runnable {
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                     MotionEvent.ACTION_DOWN -> {
                         ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getPushImage(), "drawable", getPackageName()))
                         //tablo.text = key.getNum()
-                        calc(key.getNum(),key.getTypeOfButton())
+                        calc(key.getNum(),key.getTypeOfButton(),expr)
                         down=XY //remember the pressed button
                     }
                     MotionEvent.ACTION_UP -> {
@@ -111,33 +111,54 @@ class MainActivity : AppCompatActivity() {
         } else 0
     }
 
-    fun calc(num: String, buttonType: String){
+    fun calc(num: String, buttonType: String, expr:Expression){
         if(buttonType=="n")/*Нажата кнопка с ЧИСЛОМ?, иначе с ОПЕРАТОРОМ*/ {
             if (tablo.text.length < 8)/*Проверка на длину числа (не больше 8 цифр) !!!!! ДОБАВИТЬ ПРОВЕРКУ НА ЗАПЯТУЮ !!!!! */ {
                 if (tablo.text != "0") /*проверка на НОЛИК */ {
                     tablo.text = "${tablo.text}${num}"
                 } else {
-                    tablo.text = num
+                    if(num==",")/*Если первой нажата ЗАПЯТАЯ, то печатать дробь*/{
+                        tablo.text = "${tablo.text}${num}"
+                    }else{
+                        tablo.text = num
+                    }
                 }
             }
         }else{
-            var a:Double=tablo.text.toString().toDouble()
-            var result=Expression()
+            if(expr.operand=="") /*идет ли запись выражения в текущий
+        момент(проверяем на наличие операнда) если операнд не задан,
+        то будет записано в A, иначе - записывается в B*/{
+                expr.a=tablo.text.toString().toDouble()
+            }else{
+                expr.b=tablo.text.toString().toDouble()
+            }
             when(num){
                 "ck" -> {
-
+                    expr.b="0".toDouble()
+                    expr.operand=""
+                    tablo.text=expr.b.toString()
                 }
                 "c" -> {
-                    tablo.text="0"
+                    expr.a="0".toDouble()
+                    expr.b="0".toDouble()
+                    expr.operand=""
+                    tablo.text=expr.a.toString()
                 }
                 "root" -> {
-                    tablo.text=sqrt(a).toString()
+                    tablo.text=sqrt(expr.a).toString()
                 }
                 "proc" -> {
-
+                    //дописать!!!
                 }
                 "ravn" -> {
-
+                    tablo.text=expr.getResult().toString()
+                    expr.a="0".toDouble()
+                    expr.b="0".toDouble()
+                    expr.operand=""
+                }
+                else -> {
+                    expr.operand=num
+                    tablo.text="0"
                 }
             }
         }
