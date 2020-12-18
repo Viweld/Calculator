@@ -163,18 +163,14 @@ class MainActivity : AppCompatActivity() {
 
     //функция приведения результата к виду для дисплея
     fun getNumForTablo(n:String):String{
-        val nFinal:String
-        if(n.toDouble()%1.toDouble()==0.toDouble()){
+        var nFinal:String
+        if(n.toDouble()%1.0==0.0){
             nFinal=n.toInt().toString()
         }else{
             nFinal=n.toDouble().toString()
         }
         return nFinal
     }
-
-
-
-
 }
 
 

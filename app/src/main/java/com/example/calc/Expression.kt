@@ -4,7 +4,7 @@ import org.xmlpull.v1.XmlPullParser
 
 public class Expression(var a: Double=0.0, var b: Double=0.0, var operand:String=""){
     fun getResult():Double{
-        var c:Double=0.0
+        var c=0.0
         when(operand){
             "um" -> {
                 c=a*b
@@ -18,6 +18,7 @@ public class Expression(var a: Double=0.0, var b: Double=0.0, var operand:String
             "plus" -> {
                 c=a+b
             }
+            else -> 0.0
         }
         return c
     }
