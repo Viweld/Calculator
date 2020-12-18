@@ -1,14 +1,11 @@
 package com.example.calc
 
 import android.os.Bundle
-import android.util.Log
 import android.util.Log.*
 import android.view.MotionEvent
 import android.widget.GridView
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 import org.xmlpull.v1.XmlPullParser
 import kotlin.math.sqrt
@@ -17,16 +14,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var expr=Expression()
+        val expr=Expression()
 
         //П О Л О Ж Е Н И Е   К Н О П К И   В К Л Ю Ч Е Н И Я
         im.post(Runnable {
             //Измерение картинки
-            var HI = im.height.toFloat()
-            var WI = im.width.toFloat()
+            val HI = im.height.toFloat()
+            val WI = im.width.toFloat()
             //Расчет коэффициентов сжатия если экран не по формату картинки
-            var kH: Float = HI/ 1180.toFloat()
-            var kW: Float = WI / 720.toFloat()
+            val kH: Float = HI/ 1180.toFloat()
+            val kW: Float = WI / 720.toFloat()
             power.setX((- 45.toFloat()) * kW)
             power.setY(360.toFloat()*kH)
             power.scaleX = 0.50.toFloat() * kH
@@ -41,12 +38,12 @@ class MainActivity : AppCompatActivity() {
             if (isChecked == true) {
                 //2. Конфигурируем и активируем кнопочки
                 //Измерение картинки, растянутой на экране смартфона (область калькулятора)
-                var HI = im.height
-                var WI = im.width
+                val HI = im.height
+                val WI = im.width
 
                 //Расчет коэффициентов сжатия если экран не по формату картинки
-                var kH: Float = HI / 1180.toFloat()
-                var kW: Float = WI / 720.toFloat()
+                val kH: Float = HI / 1180.toFloat()
+                val kW: Float = WI / 720.toFloat()
 
                 //Подстраиваем клавиатуру под картинку
                 keyboard.setPadding(
@@ -70,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //
+        //Обработка нажатия кнопок
         var XY: Int
         var down:Int=-1
         keyboard.setOnTouchListener { v, event ->
@@ -103,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //Determine the height of the statusbar
+    //Функция вычисления высоты статусбара
     fun getStatusBarHeight(): Int {
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         return if (resourceId > 0) {
@@ -136,22 +133,22 @@ class MainActivity : AppCompatActivity() {
                 "ck" -> {
                     expr.b="0".toDouble()
                     expr.operand=""
-                    tablo.text=expr.b.toString()
+                    tablo.text=getNumForTablo(expr.b.toString())
                 }
                 "c" -> {
                     expr.a="0".toDouble()
                     expr.b="0".toDouble()
                     expr.operand=""
-                    tablo.text=expr.a.toString()
+                    tablo.text=getNumForTablo(expr.a.toString())
                 }
                 "root" -> {
-                    tablo.text=sqrt(expr.a).toString()
+                    tablo.text=getNumForTablo(sqrt(expr.a).toString())
                 }
                 "proc" -> {
                     //дописать!!!
                 }
                 "ravn" -> {
-                    tablo.text=expr.getResult().toString()
+                    tablo.text=getNumForTablo(expr.getResult().toString())
                     expr.a="0".toDouble()
                     expr.b="0".toDouble()
                     expr.operand=""
@@ -163,6 +160,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    //функция приведения результата к виду для дисплея
+    fun getNumForTablo(n:String):String{
+        val nFinal:String
+        if(n.toDouble()%1.toDouble()==0.toDouble()){
+            nFinal=n.toInt().toString()
+        }else{
+            nFinal=n.toDouble().toString()
+        }
+        return nFinal
+    }
+
+
+
+
 }
 
 
