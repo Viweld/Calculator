@@ -1,6 +1,7 @@
 package com.example.calc
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Log.*
 import android.view.MotionEvent
 import android.widget.GridView
@@ -163,12 +164,16 @@ class MainActivity : AppCompatActivity() {
 
     //функция приведения результата к виду для дисплея
     fun getNumForTablo(n:String):String{
-        var nFinal:String
+        var nFinal:String=""
         if(n.toDouble()%1.0==0.0){
-            nFinal=n.toInt().toString()
+            nFinal=(n.toDouble()/1.0).toInt().toString()
+            Log.d("event", "True ${n.toDouble()%1.0} -> ${nFinal}")
         }else{
             nFinal=n.toDouble().toString()
+            Log.d("event", "False ${n.toDouble()%1.0} -> ${nFinal}")
+
         }
+        Log.d("event", "True ${n.toDouble()%1.0} -> ${nFinal}")
         return nFinal
     }
 }
