@@ -25,11 +25,13 @@ class CalcButton(var parser: XmlPullParser, val b_id: Int) {
         return parser.getAttributeValue(2).toString()
     }
 
+    fun getNum(): String  {
+        return parser.getAttributeValue(3).toString()
+    }
+
     fun getTypeOfButton():String {
         return parser.getAttributeValue(4).toString()
     }
 
-    fun getNum(): String  {
-        return parser.getAttributeValue(3).toString()
-    }
+
 }

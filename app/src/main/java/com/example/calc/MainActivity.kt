@@ -1,5 +1,6 @@
 package com.example.calc
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.*
@@ -9,9 +10,13 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.xmlpull.v1.XmlPullParser
+import java.text.Format
+import java.util.*
+import java.util.Locale.FRANCE
 import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,12 +25,12 @@ class MainActivity : AppCompatActivity() {
         //П О Л О Ж Е Н И Е   К Н О П К И   В К Л Ю Ч Е Н И Я
         im.post(Runnable {
             //Измерение картинки
-            val HI = im.height.toFloat()
-            val WI = im.width.toFloat()
+            val hI = im.height.toFloat()
+            val wI = im.width.toFloat()
             //Расчет коэффициентов сжатия если экран не по формату картинки
-            val kH: Float = HI/ 1180.toFloat()
-            val kW: Float = WI / 720.toFloat()
-            power.setX((- 45.toFloat()) * kW)
+            val kH: Float = hI/ 1180.toFloat()
+            val kW: Float = wI / 720.toFloat()
+            power.setX(((- 45).toFloat()) * kW)
             power.setY(360.toFloat()*kH)
             power.scaleX = 0.50.toFloat() * kH
             power.scaleY = 0.50.toFloat() * kW
@@ -33,18 +38,18 @@ class MainActivity : AppCompatActivity() {
 
 
             // В К Л Ю Ч Е Н И Е  /  В Ы К Л Ю Ч Е Н И Е
-        power.setOnCheckedChangeListener { buttonView, isChecked ->
+        power.setOnCheckedChangeListener { _, isChecked ->
             //1. Вибрируем:
             VIB(this)
-            if (isChecked == true) {
+            if (isChecked) {
                 //2. Конфигурируем и активируем кнопочки
                 //Измерение картинки, растянутой на экране смартфона (область калькулятора)
-                val HI = im.height
-                val WI = im.width
+                val hI = im.height
+                val wI = im.width
 
                 //Расчет коэффициентов сжатия если экран не по формату картинки
-                val kH: Float = HI / 1180.toFloat()
-                val kW: Float = WI / 720.toFloat()
+                val kH: Float = hI / 1180.toFloat()
+                val kW: Float = wI / 720.toFloat()
 
                 //Подстраиваем клавиатуру под картинку
                 keyboard.setPadding(
@@ -69,28 +74,28 @@ class MainActivity : AppCompatActivity() {
 
 
         //Обработка нажатия кнопок
-        var XY: Int
+        var xy: Int
         var down:Int=-1
         keyboard.setOnTouchListener { v, event ->
-            XY = (v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt() - getStatusBarHeight())
-            val XMLdata: XmlPullParser = getResources().getXml(R.xml.keydata)
-            val key=CalcButton(XMLdata,XY)
-            if (XY >= 0) {
+            xy = (v as GridView).pointToPosition(event.rawX.toInt(), event.rawY.toInt() - getStatusBarHeight())
+            val xmlData: XmlPullParser = getResources().getXml(R.xml.keydata)
+            val key=CalcButton(xmlData,xy)
+            if (xy >= 0) {
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
-                        ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getPushImage(), "drawable", getPackageName()))
-                        //tablo.text = key.getNum()
+                        (v.getChildAt(xy) as ImageView).setImageResource(getResources().getIdentifier(key.getPushImage(), "drawable", getPackageName()))
                         calc(key.getNum(),key.getTypeOfButton(),expr)
-                        down=XY //remember the pressed button
+                        down=xy //запоминаем нажатую кнопку, чтобы потом ее отжать если палец сдивнется с нее
                     }
                     MotionEvent.ACTION_UP -> {
-                        ((v as GridView).getChildAt(XY) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
+                        (v.getChildAt(xy) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
                     }
                     MotionEvent.ACTION_MOVE -> {
-                        if(XY!=down){
-                            val XMLdata: XmlPullParser = getResources().getXml(R.xml.keydata)
-                            val key=CalcButton(XMLdata,down)
-                            ((v as GridView).getChildAt(down) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
+                        if(xy!=down){
+                            
+                            val xmlData = getResources().getXml(R.xml.keydata)
+                            val key=CalcButton(xmlData,down)
+                            (v.getChildAt(down) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
                         }
                     }
                     else -> {
@@ -109,27 +114,19 @@ class MainActivity : AppCompatActivity() {
         } else 0
     }
 
+    //Функция рассчетов
     fun calc(num: String, buttonType: String, expr:Expression){
         if(buttonType=="n")/*Нажата кнопка с ЧИСЛОМ?, иначе с ОПЕРАТОРОМ*/ {
-            if (tablo.text.length < 8)/*Проверка на длину числа (не больше 8 цифр) !!!!! ДОБАВИТЬ ПРОВЕРКУ НА ЗАПЯТУЮ !!!!! */ {
-                if (tablo.text != "0") /*проверка на НОЛИК */ {
-                    tablo.text = "${tablo.text}${num}"
-                } else {
-                    if(num==",")/*Если первой нажата ЗАПЯТАЯ, то печатать дробь*/{
-                        tablo.text = "${tablo.text}${num}"
-                    }else{
-                        tablo.text = num
-                    }
-                }
-            }
+            tablo.text=formingOfNumber(num,tablo.text.toString())
         }else{
             if(expr.operand=="") /*идет ли запись выражения в текущий
         момент(проверяем на наличие операнда) если операнд не задан,
         то будет записано в A, иначе - записывается в B*/{
-                expr.a=tablo.text.toString().toDouble()
+                expr.a=tablo.text.toString().replace(",",".").toDouble()
             }else{
-                expr.b=tablo.text.toString().toDouble()
+                expr.b=tablo.text.toString().replace(",",".").toDouble()
             }
+
             when(num){
                 "ck" -> {
                     expr.b="0".toDouble()
@@ -162,19 +159,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //функция-интерфейс набора числа между "ЛОГИКОЙ СТАРИННОГО КАЛЬКУЛЯТОРА - ЛОГИКОЙ ПРИЛОЖЕНИЯ"
+    fun formingOfNumber(num:String,disp:String):String{
+        val length:Int //длина числа без учета запятой
+        val commaIsThere:Boolean=(disp.indexOf(",",0,ignoreCase = true)>=0)//наличие запятой
+
+        if(commaIsThere && num==",") return disp
+        //поиск запятой и определение lenght
+        if(commaIsThere){
+            length=disp.length-1
+        }else{
+            length=disp.length
+        }
+        //проверка длины и формирование числа
+        if(length<=7){
+            //если на экране нолик, а введена не запятая а число, то замена числом
+            if(disp=="0" && num!=","){
+                return num
+            }else{
+                return disp+num
+            }
+        }else{
+            return disp
+        }
+    }
+
     //функция приведения результата к виду для дисплея
     fun getNumForTablo(n:String):String{
-        var nFinal:String=""
         if(n.toDouble()%1.0==0.0){
-            nFinal=(n.toDouble()/1.0).toInt().toString()
-            Log.d("event", "True ${n.toDouble()%1.0} -> ${nFinal}")
+            return (n.toDouble()/1.0).toInt().toString()
         }else{
-            nFinal=n.toDouble().toString()
-            Log.d("event", "False ${n.toDouble()%1.0} -> ${nFinal}")
-
+            return n.replace(".",",")
         }
-        Log.d("event", "True ${n.toDouble()%1.0} -> ${nFinal}")
-        return nFinal
     }
 }
 

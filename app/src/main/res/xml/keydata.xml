@@ -124,7 +124,7 @@
         b_im="b_dot"
         b_im_press="b_dot_d"
         b_type="n"
-        b_num="." />
+        b_num="," />
 
     <button
         b_id="17"
