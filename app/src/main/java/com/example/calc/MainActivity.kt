@@ -93,6 +93,8 @@ class MainActivity : AppCompatActivity() {
                     MotionEvent.ACTION_MOVE -> {
                         if (xy != down) {
 
+
+
                             val xmlData = getResources().getXml(R.xml.keydata)
                             val key = CalcButton(xmlData, down)
                             (v.getChildAt(down) as ImageView).setImageResource(getResources().getIdentifier(key.getOrigImage(), "drawable", getPackageName()))
@@ -157,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                     //дописать!!!
                 }
                 "ravn" -> {
-                    expr.condition = "c"
+                    //expr.condition = "c" - VER 1.1: перенесено в Expression.getResult()
                     tablo.text = getNumForTablo(expr.getResult())
                 }
                 else -> {

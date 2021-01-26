@@ -1,5 +1,6 @@
 package com.example.calc
 
+import android.util.Log
 import org.xmlpull.v1.XmlPullParser
 
 public class Expression(
@@ -10,6 +11,12 @@ public class Expression(
     var condition: String? = null
 ) {
     fun getResult(): String {
+        Log.d("STAT","\na: $a\n " +
+                "b: $b\n" +
+                "c: $c\n" +
+                "operator: $operator\n" +
+                "condition: $condition")
+        condition = "c"
         if (a != null && operator == null && b == null) c = a
         if (a != null && operator != null && b == null) {
             if (c == null) c = a
