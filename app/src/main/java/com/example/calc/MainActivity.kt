@@ -160,13 +160,13 @@ class MainActivity : AppCompatActivity() {
                 }
                 "ravn" -> {
                     //expr.condition = "c" - VER 1.1: перенесено в Expression.getResult()
-                    tablo.text = getNumForTablo(expr.getResult())
+                    if(expr.a!=null) tablo.text = getNumForTablo(expr.getResult())
                 }
                 else -> {
                     if (expr.condition == "c") {
                         expr.a = expr.c
                     }
-                    if (expr.operator!=null){tablo.text = getNumForTablo(expr.getResult())}
+                    if (expr.operator!=null){if(expr.a!=null) tablo.text = getNumForTablo(expr.getResult())}
                     expr.operator = num
                     expr.condition = "operator"
                     //тут моргание текстом сделать

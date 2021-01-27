@@ -11,11 +11,19 @@ public class Expression(
     var condition: String? = null
 ) {
     fun getResult(): String {
-        Log.d("STAT","\na: $a\n " +
-                "b: $b\n" +
-                "c: $c\n" +
-                "operator: $operator\n" +
-                "condition: $condition")
+        Log.d("STAT","""Вход:
+            $a ${when(operator){
+            "um"->"*"
+            "del"->"/"
+            "min"->"-"
+            "plus"->"+"
+            else->"..."
+        }} $b = $c
+            condition1: $condition           
+        """.trimIndent())
+
+
+
         condition = "c"
         if (a != null && operator == null && b == null) c = a
         if (a != null && operator != null && b == null) {
@@ -57,8 +65,18 @@ public class Expression(
             a = null
             b = null
             operator = null
-            return c.toString()
         }
+        Log.d("STAT","""Выход:
+            $a ${when(operator){
+            "um"->"*"
+            "del"->"/"
+            "min"->"-"
+            "plus"->"+"
+            else->"..."
+        }} $b = $c
+            condition2: $condition           
+        """.trimIndent())
+
         return c.toString()
     }
 
